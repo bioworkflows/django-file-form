@@ -91,6 +91,7 @@ def get_file_meta(data: QueryDict, field_name: str):
     except Exception:
         return {}
 
+from django.conf import settings
 
 class BaseUploadWidget(ClearableFileInput):
     def render(
