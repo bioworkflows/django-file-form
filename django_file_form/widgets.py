@@ -15,6 +15,10 @@ from django_file_form.models import (
     UploadedFileWithId,
 )
 
+import logging
+logger = logging.getLogger(__name__)
+
+
 TRANSLATIONS = {
     "Cancel": _("Cancel"),
     "Delete": _("Delete"),
@@ -97,6 +101,8 @@ class BaseUploadWidget(ClearableFileInput):
         renderer=None,
     ):
         upload_input = super().render(name, value, attrs, renderer)
+        logger.error(f'RENDERER {renderer} with name {name} to {upload_input}')
+
         return mark_safe(
             render_to_string(
                 "django_file_form/upload_widget.html",
