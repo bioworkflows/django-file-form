@@ -168,11 +168,15 @@ class RenderUploadFile {
   }
 
   private createFilesContainer = (parent: Element): Element => {
-    const div = document.createElement("div");
-    div.className = "dff-files";
-    parent.appendChild(div);
-
-    return div;
+    let elems = document.getElementsByClassName('dff-files');
+    if (elems.length > 0) {
+      return elems[0]
+    } else {
+      const div = document.createElement("div");
+      div.className = "dff-files";
+      parent.appendChild(div);
+      return div;
+    }
   };
 
   private addFile(filename: string, uploadIndex: number): HTMLElement {
