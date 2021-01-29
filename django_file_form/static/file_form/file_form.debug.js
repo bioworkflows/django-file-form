@@ -4092,7 +4092,7 @@
 	    defineProperty$2(this, "translations", void 0);
 
 	    defineProperty$2(this, "createFilesContainer", function (parent) {
-	      var elems = document.getElementsByClassName('dff-files');
+	      var elems = parent.getElementsByClassName('dff-files');
 
 	      if (elems.length > 0) {
 	        return elems[0];

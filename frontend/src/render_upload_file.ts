@@ -168,7 +168,7 @@ class RenderUploadFile {
   }
 
   private createFilesContainer = (parent: Element): Element => {
-    let elems = document.getElementsByClassName('dff-files');
+    let elems = parent.getElementsByClassName('dff-files');
     if (elems.length > 0) {
       return elems[0]
     } else {
