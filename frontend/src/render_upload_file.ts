@@ -29,18 +29,22 @@ class RenderUploadFile {
   public addNewUpload(filename: string, uploadIndex: number): HTMLElement {
     const div = this.addFile(filename, uploadIndex);
 
-    const progressSpan = document.createElement("span");
-    progressSpan.className = "dff-progress";
+    const progressDiv = document.createElement("div");
+    progressDiv.className = "dff-progress progress";
+
+    const progressBarDiv = document.createElement("div");
+    progressBarDiv.className = "progress-bar";
 
     const innerSpan = document.createElement("span");
-    innerSpan.className = "dff-progress-inner";
+    innerSpan.className = "dff-progress-inner sr-only";
 
-    progressSpan.appendChild(innerSpan);
-    div.appendChild(progressSpan);
+    progressDiv.appendChild(progressBarDiv);
+    progressBarDiv.appendChild(innerSpan);
+    div.appendChild(progressDiv);
 
-    const cancelLink = document.createElement("a");
-    cancelLink.className = "dff-cancel";
-    cancelLink.innerHTML = this.translations.Cancel;
+    const cancelLink = document.createElement("span");
+    cancelLink.className = "lnr upload_cross lnr-cross";
+    cancelLink.innerHTML = "";
     cancelLink.setAttribute("data-index", `${uploadIndex}`);
     cancelLink.href = "#";
     div.appendChild(cancelLink);
@@ -168,22 +172,18 @@ class RenderUploadFile {
   }
 
   private createFilesContainer = (parent: Element): Element => {
-    let elems = parent.getElementsByClassName('dff-files');
-    if (elems.length > 0) {
-      return elems[0]
-    } else {
-      const div = document.createElement("div");
-      div.className = "dff-files";
-      parent.appendChild(div);
-      return div;
-    }
+    const div = document.createElement("div");
+    div.className = "dff-files";
+    parent.appendChild(div);
+
+    return div;
   };
 
   private addFile(filename: string, uploadIndex: number): HTMLElement {
     const div = document.createElement("div");
-    div.className = `dff-file dff-file-id-${uploadIndex}`;
+    div.className = `dff-file dff-file-id-${uploadIndex} label clearfix`;
 
-    const nameSpan = document.createElement("span");
+    const nameSpan = document.createElement("p");
     nameSpan.innerHTML = escape(filename);
 
     div.appendChild(nameSpan);
