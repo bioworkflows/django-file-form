@@ -20,8 +20,8 @@ logger = logging.getLogger(__name__)
 
 
 TRANSLATIONS = {
-    "Cancel": _("Cancel"),
-    "Delete": _("Delete"),
+    "Cancel": '<span class="lnr upload_cross lnr-cross"></span>',
+    "Delete": '<span class="lnr upload_cross lnr-cross"></span>',
     "Delete failed": _("Delete failed"),
     "Upload failed": _("Upload failed"),
     "Drop your files here": _("Drop your files here"),
