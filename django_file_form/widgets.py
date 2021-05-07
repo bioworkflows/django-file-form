@@ -77,6 +77,9 @@ class UploadWidget(BaseUploadWidget):
     def value_from_datadict(
         self, data: QueryDict, files: MultiValueDict, prefixed_field_name: str
     ):
+        with open('file-form.log', 'a') as tst:
+            tst.write(f'GET data {data} {files} {prefixed_field_name}')
+
         uploads = get_uploads(data, prefixed_field_name)
 
         upload = uploads[0] if uploads else None
