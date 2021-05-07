@@ -77,9 +77,14 @@ class UploadWidget(BaseUploadWidget):
     def value_from_datadict(
         self, data: QueryDict, files: MultiValueDict, prefixed_field_name: str
     ):
+        with open('file-form.log', 'a') as tst:
+            tst.write(f'GET WIDGET DATA {data} {files}')
         upload = super().value_from_datadict(data, files, prefixed_field_name)
 
         if upload:
+            with open('file-form.log', 'a') as tst:
+                tst.write(f'GET upload {upload.__class__}')
+
             return upload
         else:
             uploads = get_uploads(data, prefixed_field_name)
@@ -89,6 +94,10 @@ class UploadWidget(BaseUploadWidget):
 
             if upload and upload.name in metadata:
                 upload.metadata = metadata[upload.name]
+
+            with open('file-form.log', 'a') as tst:
+                tst.write(f'GET else upload {upload.__class__}')
+
             return upload
 
 
