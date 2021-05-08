@@ -77,9 +77,6 @@ class UploadWidget(BaseUploadWidget):
     def value_from_datadict(
         self, data: QueryDict, files: MultiValueDict, prefixed_field_name: str
     ):
-        with open('file-form.log', 'a') as tst:
-            tst.write(f'GET data {data} {files} {prefixed_field_name}\n\n')
-
         uploads = get_uploads(data, prefixed_field_name)
 
         upload = uploads[0] if uploads else None
@@ -89,7 +86,7 @@ class UploadWidget(BaseUploadWidget):
             upload.metadata = metadata[upload.name]
 
         with open('file-form.log', 'a') as tst:
-            tst.write(f'Create upload {upload.__class__}\n\n')
+            tst.write(f'Create upload {upload.name} {upload.__class__}\n\n')
 
         return upload
 
@@ -110,6 +107,10 @@ class UploadMultipleWidget(BaseUploadWidget):
             for upload in uploads:
                 if upload.name in metadata:
                     upload.metadata = metadata[upload.name]
+
+                with open('file-form.log', 'a') as tst:
+                    tst.write(f'Create multi upload {upload.name} {upload.__class__}\n\n')
+
             return uploads
         else:
             # NB: django-formtools wizard uses dict instead of MultiValueDict
