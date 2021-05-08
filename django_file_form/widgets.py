@@ -99,7 +99,7 @@ class UploadMultipleWidget(BaseUploadWidget):
         prefixed_field_name: str,
     ):
         if hasattr(files, "getlist"):
-            uploads = files.getlist(prefixed_field_name) + get_uploads(
+            uploads = get_uploads(
                 data, prefixed_field_name
             )
             metadata = get_file_meta(data, prefixed_field_name)
