@@ -78,7 +78,7 @@ class UploadWidget(BaseUploadWidget):
         self, data: QueryDict, files: MultiValueDict, prefixed_field_name: str
     ):
         with open('file-form.log', 'a') as tst:
-            tst.write(f'GET data {data} {files} {prefixed_field_name}')
+            tst.write(f'GET data {data} {files} {prefixed_field_name}\n\n')
 
         uploads = get_uploads(data, prefixed_field_name)
 
@@ -89,7 +89,7 @@ class UploadWidget(BaseUploadWidget):
             upload.metadata = metadata[upload.name]
 
         with open('file-form.log', 'a') as tst:
-            tst.write(f'GET else upload {upload.__class__}')
+            tst.write(f'Create upload {upload.__class__}\n\n')
 
         return upload
 
